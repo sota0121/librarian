@@ -15,7 +15,21 @@ import pandas as pd
 # https://riptutorial.com/ja/pandas/example/5586/%E3%82%BF%E3%83%97%E3%83%AB%E3%81%AE%E3%83%AA%E3%82%B9%E3%83%88%E3%81%8B%E3%82%89dataframe%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B
 #---------------------------------------------------------
 
-class bookdb:
+#-----------------------------------
+# DB Architect
+#  - column0 : unique id
+#  - column1 : isbn
+#  - column2 : title
+#  - column3 : status
+# ***********
+# status
+# 0 : avalable(利用可能)
+# 1 : checked out(貸出中)
+# 2 : disposed(廃棄済)
+# ***********
+#-----------------------------------
+
+class BookDB:
     
     def __init__(self,dbname="database.db"):
         self.database_name = dbname
