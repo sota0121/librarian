@@ -8,18 +8,19 @@ from codereader import CodeReader
 from bookdb import BookDB
 import qrcode
 import pathlib
+import sqlite3
 
 
 class RegisterBooks:
-    BOOK_DB_NAME = "book_database.db"
+    LIBRARIAN_DB_NAME = "librarian.db"
     GBOOKS_API_URL = 'https://www.googleapis.com/books/v1/volumes?q=isbn:'
-    QR_CODE_IMG_DIR = './qrcode_files'
+    BOOKS_QRCODE_DIR = './books_qrcode'
 
     def __init__(self):
         self.reader = CodeReader()
-        self.db = BookDB(RegisterBooks.BOOK_DB_NAME)
+        self.db = BookDB(RegisterBooks.LIBRARIAN_DB_NAME)
         self.db.create_table()
-        outdir = pathlib.Path(RegisterBooks.QR_CODE_IMG_DIR)
+        outdir = pathlib.Path(RegisterBooks.BOOKS_QRCODE_DIR)
         if not outdir.exists():
             outdir.mkdir()
 
@@ -34,7 +35,7 @@ class RegisterBooks:
     def get_booktitle_from_gbsapi(self, json_data):
         try:
             title = json_data['items'][0]['volumeInfo']['title']
-        except:
+        except :
             title = None
         return title
 
@@ -109,7 +110,7 @@ class RegisterBooks:
             qrcode_filename = str(row[1]) + "_" + title_str + ".png"
             # output QR code png file
             qrcode_img = qrcode.make(qrcode_str)
-            qrcode_img.save(RegisterBooks.QR_CODE_IMG_DIR + '/' + qrcode_filename)
+            qrcode_img.save(RegisterBooks.BOOKS_QRCODE_DIR + '/' + qrcode_filename)
             # debug code
             print(row)
 
