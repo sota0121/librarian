@@ -41,6 +41,7 @@ class BookDB:
         self.c.close()
         self.conn.close()
 
+    # if table does not exists, create
     def create_table(self, tablename="books"):
         query = 'create table if not exists ' + tablename + ' ('
         query += 'unique_id INTEGER PRIMARY KEY, '

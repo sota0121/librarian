@@ -8,7 +8,6 @@ from codereader import CodeReader
 from bookdb import BookDB
 import qrcode
 import pathlib
-import sqlite3
 
 
 class RegisterBooks:
@@ -19,7 +18,7 @@ class RegisterBooks:
     def __init__(self):
         self.reader = CodeReader()
         self.db = BookDB(RegisterBooks.LIBRARIAN_DB_NAME)
-        self.db.create_table()
+        self.db.create_table()  # if not table exists
         outdir = pathlib.Path(RegisterBooks.BOOKS_QRCODE_DIR)
         if not outdir.exists():
             outdir.mkdir()
