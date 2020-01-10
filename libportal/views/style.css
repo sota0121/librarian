@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+td{
+   width: 70%; 
+}
+.boxA{
+    position: relative;
+    top: 50px;
+}
+.boxa{
+    width: 50%;
+    float: right;
+}
+.boxb{
+    width: 50%;
+    float: left;
+}
